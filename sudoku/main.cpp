@@ -20,12 +20,15 @@ int main(int argc, char *argv[])
 			cout << "Illegal argument input!\nMake sure the 1<=N<=1000000" << endl;
 			return 0;
 		}
-		generate_sudoku(n);
+		generator s;
+		s.generate_sudoku(n);
 	}
 	else if (argv[1][1] == 's')
 	{
-		bool f = solve_sudoku(argv[2]);
-		if (!f) cout << "Solve sudoku failed!" << endl;
+		//bool f = solve_sudoku(argv[2]);
+		//if (!f) cout << "Solve sudoku failed!" << endl;
+		solver s;
+		s.solve_sudoku(argv[2]);
 	}
 	return 0;
 }

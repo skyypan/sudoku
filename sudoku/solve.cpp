@@ -1,15 +1,17 @@
 #include"main.h"
 
-char input[100000000];
+char input[200000000];
+char s_output[200000000];
+/*char input[100000000];
 char s_output[100000000];
 int need_solve[100];//需要填入的格子id记录
 int a[10][10];
 int row_mark[10][10];//row_mark[i][j]第i行数字j已经填入
 int col_mark[10][10];//col_mark[i][j]第i列数字j已经填入
 int block_mark[10][10];//block_mark[i][j]第i个九宫格数字j已经填入
-int s_point = 0;
+int s_point = 0;*/
 
-void setnum(int row, int col, int num, int flag)
+void solver::setnum(int row, int col, int num, int flag)
 {
 	int block_id = (row / 3) * 3 + col / 3;
 	row_mark[row][num] = flag;
@@ -25,7 +27,7 @@ void setnum(int row, int col, int num, int flag)
 	}
 }
 
-bool judge(int row, int col, int num)
+bool solver::judge(int row, int col, int num)
 {
 	int block_id = (row / 3) * 3 + col / 3;
 	if (!row_mark[row][num] && !col_mark[col][num] && !block_mark[block_id][num])
@@ -34,7 +36,7 @@ bool judge(int row, int col, int num)
 		return false;
 }
 
-bool dfs(int s,int count)
+bool solver::dfs(int s,int count)
 {
 	if (s == count) return true;
 	int row = need_solve[s] / 9;
@@ -52,7 +54,7 @@ bool dfs(int s,int count)
 	return false;
 }
 
-void print_output()
+void solver::print_output()
 {
 	for (int i = 0; i < 9; i++)
 	{
@@ -67,14 +69,21 @@ void print_output()
 	s_output[s_point++] = '\n';
 }
 
-bool solve_sudoku(string path)
+void solver::Write()
+{
+	remove("sudoku.txt");
+	ofstream WriteFile("sudoku.txt");
+	WriteFile << s_output;
+}
+
+void solver::solve_sudoku(string path)
 {
 	//从文件中读出数独
 	ifstream readfile(path);
 	if (!readfile)
 	{
-		cout << "Can not find file!" << endl;
-		return false;
+		cout << "Can not find file！" << endl;
+		return;
 	}
 	int p = 0;
 	while (!readfile.eof())
@@ -107,8 +116,9 @@ bool solve_sudoku(string path)
 				}
 			}
 		}
-		bool f = dfs(0,count);
-		if (f == false) return false;
+		//bool f = dfs(0,count);
+		//if (f == false) return false;
+		dfs(0, count);
 		print_output();
 
 		for (int i = 0; i < 10; i++)
@@ -122,6 +132,6 @@ bool solve_sudoku(string path)
 			}
 		}
 	}
-	Write(s_output);
-	return true;
+	Write();
+	return;
 }
