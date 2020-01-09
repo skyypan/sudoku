@@ -2,14 +2,7 @@
 
 char input[200000000];
 char s_output[200000000];
-/*char input[100000000];
-char s_output[100000000];
-int need_solve[100];//需要填入的格子id记录
-int a[10][10];
-int row_mark[10][10];//row_mark[i][j]第i行数字j已经填入
-int col_mark[10][10];//col_mark[i][j]第i列数字j已经填入
-int block_mark[10][10];//block_mark[i][j]第i个九宫格数字j已经填入
-int s_point = 0;*/
+
 
 void solver::setnum(int row, int col, int num, int flag)
 {
@@ -71,6 +64,7 @@ void solver::print_output()
 
 void solver::Write()
 {
+	out = s_output;
 	remove("sudoku.txt");
 	ofstream WriteFile("sudoku.txt");
 	WriteFile << s_output;
@@ -78,6 +72,8 @@ void solver::Write()
 
 void solver::solve_sudoku(string path)
 {
+	//memset(s_output, ' ', sizeof(s_output));
+
 	//从文件中读出数独
 	ifstream readfile(path);
 	if (!readfile)
@@ -85,26 +81,34 @@ void solver::solve_sudoku(string path)
 		cout << "Can not find file！" << endl;
 		return;
 	}
-	int p = 0;
+	int k = 0;
 	while (!readfile.eof())
 	{
-		readfile >> input[p++];
+		readfile >> input[k++];
 	}
 	readfile.close();
 
-	p = 0;
-	while (input[p])
+	int p = 0;
+	while (p < k)
 	{
-		if (input[p] == ' ')
+
+		if (input[p] == ' ' || input[p] == '\n')
 		{
 			p++;
 			continue;
 		}
+
 		int count = 0;
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
 			{
+				if (input[p] == ' ')
+				{
+					p++;
+					j--;
+					continue;
+				}
 				int tmp = input[p++] - '0';
 				if (tmp == 0)
 				{
