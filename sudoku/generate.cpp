@@ -1,21 +1,7 @@
 #include "main.h"
 
 char output[200000000];//输出
-/*char output[200000000];//输出
-int point = 0;//output位置
-int now[10][10];
-//转换模板
-int trans[10][10] = {
-	{5,1,2,3,4,6,7,8,9},
-	{3,4,6,7,8,9,5,1,2},
-	{7,8,9,5,1,2,3,4,6},
-	{1,2,3,4,6,7,8,9,5},
-	{4,6,7,8,9,5,1,2,3},
-	{8,9,5,1,2,3,4,6,7},
-	{2,3,4,6,7,8,9,5,1},
-	{6,7,8,9,5,1,2,3,4},
-	{9,5,1,2,3,4,6,7,8},
-};*/
+
 //使用模板和第一行生成初始数独终局
 void generator::initialize(int first[])
 {
@@ -35,13 +21,17 @@ void generator::initialize(int first[])
 //写入文件
 void generator::Write()
 {
+	out = output;
 	remove("sudoku.txt");
 	ofstream WriteFile("sudoku.txt");
 	WriteFile << output;
+	
 }
 //生成数独
 void generator::generate_sudoku(int num)
 {
+	//memset(output, ' ', sizeof(output));
+
 	int first[] = { 5,1,2,3,4,6,7,8,9 };//第一行
 	int row_order[] = { 0,1,2,3,4,5,6,7,8 };//行顺序
 	do {

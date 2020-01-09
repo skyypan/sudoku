@@ -26,6 +26,7 @@ private:
 		{9,5,1,2,3,4,6,7,8},
 	};
 public:
+	char *out;
 	void initialize(int first[]);
 	void generate_sudoku(int num);
 	void Write();
@@ -41,6 +42,7 @@ private:
 	int block_mark[10][10] = { 0 };//block_mark[i][j]第i个九宫格数字j已经填入
 	int s_point = 0;
 public:
+	char *out;
 	void setnum(int row, int col, int num, int flag);
 	bool judge(int row, int col, int num);
 	bool dfs(int s, int count);
@@ -49,4 +51,4 @@ public:
 	void Write();
 };
 
-
+int main(int argc, char *argv[]);

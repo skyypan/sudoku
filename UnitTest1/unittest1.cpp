@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../sudoku/main.h"
+#include "test.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+
 namespace UnitTest1
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(Input)
 	{
 	public:
 		char *argv1[3];
@@ -68,15 +70,52 @@ namespace UnitTest1
 			Assert::AreEqual(r, 0);
 		}
 
-		TEST_METHOD(Testsolve1)
+	};
+	TEST_CLASS(Generate)
+	{
+		TEST_METHOD(Generate1)
 		{
-			bool flag = solve_sudoku("test_wrong.txt");
-			Assert::AreEqual(flag,false);
+			generator gtest1;
+			gtest1.generate_sudoku(1);
+			bool flag = test_txt(gtest1.out, 1);
+			Assert::AreEqual(flag,true);
+
 		}
-		TEST_METHOD(Testsolve2)
+		TEST_METHOD(Generate500000)
 		{
-			bool flag = solve_sudoku("input.txt");
+			generator gtest3;
+			gtest3.generate_sudoku(500000);
+			bool flag = test_txt(gtest3.out, 500000);
 			Assert::AreEqual(flag, true);
+
+		}
+		TEST_METHOD(Generate1000000)
+		{
+			generator gtest2;
+			gtest2.generate_sudoku(1000000);
+			bool flag = test_txt(gtest2.out, 1000000);
+			Assert::AreEqual(flag, true);
+
+		}
+	};
+
+	TEST_CLASS(Solve)
+	{
+		TEST_METHOD(Slove1)
+		{
+			solver stest1;
+			stest1.solve_sudoku("input.txt");
+			bool flag = test_txt(stest1.out, 2);
+			Assert::AreEqual(flag, true);
+
+		}
+		TEST_METHOD(Slove2)
+		{
+			solver stest2;
+			stest2.solve_sudoku("input1.txt");
+			bool flag = test_txt(stest2.out, 4);
+			Assert::AreEqual(flag, true);
+
 		}
 	};
 }
