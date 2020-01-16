@@ -110,16 +110,15 @@ void solver::solve_sudoku(string path)
 				int tmp = input[p++] - '0';
 				if (tmp == 0)
 				{
-					need_solve[count++] = i * 9 + j;
+					need_solve[count++] = i * 9 + j;//需要求解的位置
 				}
 				else
 				{
-					setnum(i, j, tmp, 1);
+					setnum(i, j, tmp, 1);//已有数字记录
 				}
 			}
 		}
-		//bool f = dfs(0,count);
-		//if (f == false) return false;
+
 		dfs(0, count);
 		print_output();
 

@@ -50,15 +50,6 @@ bool test_blo(int a[10][10])
 
 bool test_txt(char *out, int num)
 {
-	/*int p = 0,k = 0;
-	while (out[p])
-	{
-		if (out[p] >= '0'&&out[p] <= '9')
-		{
-			s[k++] = out[p] - '0';
-		}
-		p++;
-	}*/
     int p = 0;
 	int count = 0;
 	while (out[p])
