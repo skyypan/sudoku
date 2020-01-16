@@ -30,5 +30,9 @@ int main(int argc, char *argv[])
 		solver s;
 		s.solve_sudoku(argv[2]);
 	}
+	//generator s;
+	//s.generate_sudoku(1000000);
+	//solver ss;
+	//ss.solve_sudoku("D:\\se\\sudoku\\sudoku\\Debug\\input.txt");
 	return 0;
 }

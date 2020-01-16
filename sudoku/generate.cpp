@@ -30,8 +30,6 @@ void generator::Write()
 //生成数独
 void generator::generate_sudoku(int num)
 {
-	//memset(output, ' ', sizeof(output));
-
 	int first[] = { 5,1,2,3,4,6,7,8,9 };//第一行
 	int row_order[] = { 0,1,2,3,4,5,6,7,8 };//行顺序
 	do {

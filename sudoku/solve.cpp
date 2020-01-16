@@ -72,8 +72,6 @@ void solver::Write()
 
 void solver::solve_sudoku(string path)
 {
-	//memset(s_output, ' ', sizeof(s_output));
-
 	//从文件中读出数独
 	ifstream readfile(path);
 	if (!readfile)

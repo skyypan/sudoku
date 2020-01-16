@@ -105,17 +105,17 @@ namespace UnitTest1
 		{
 			solver stest1;
 			stest1.solve_sudoku("input.txt");
-			bool flag = test_txt(stest1.out, 2);
+			bool flag = test_txt(stest1.out, 1000000);
 			Assert::AreEqual(flag, true);
 
 		}
-		TEST_METHOD(Slove2)
+		/*TEST_METHOD(Slove2)
 		{
 			solver stest2;
 			stest2.solve_sudoku("input1.txt");
 			bool flag = test_txt(stest2.out, 4);
 			Assert::AreEqual(flag, true);
 
-		}
+		}*/
 	};
 }
